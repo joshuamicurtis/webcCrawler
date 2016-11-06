@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Group Pi's Web Crawler Project</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+
+    <!-- <body onload="init();"> -->
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+
+				<div class="top">
+
+					<!-- OSU Logo -->
+						<div id="logo">
+							<span class="image avatar48"><img src="images/osu.png" alt="" /></span>
+							<h1 id="title">Group Pi</h1>
+							<p>Web Crawler</p>
+						</div>
+
+					<!-- Navigation Bar -->
+						<nav id="nav">
+							<ul>
+								<li><a href="#top" id="top-link" class="skel-layers-ignoreHref"><span class="icon fa-home">Welcome</span></a></li>
+								<li><a href="#tryit" id="tryit-link" class="skel-layers-ignoreHref"><span class="icon fa-th">Try It</span></a></li>
+								<li><a href="#results" id="results-link" class="skel-layers-ignoreHref"><span class="icon fa-camera-retro">Results</span></a></li>
+								<li><a href="#sources" id="sources-link" class="skel-layers-ignoreHref"><span class="icon fa-user">Further Reading</span></a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+				<div class="bottom">
+
+					<!-- Github -->
+						<ul class="icons">
+							<li><a href="https://github.com/419Pi/crawler" target="_blank" class="icon fa-github"><span class="label">Github</span></a></li>
+						</ul>
+				</div>
+			</div>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- Intro -->
+					<section id="top" class="one dark cover">
+						<div class="container">
+
+							<header>
+								<h2 class="alt">Welcome to<strong> Group Pi's</strong> Web Crawler<br>
+									project for CS 496.</h2>
+							</header>
+
+                            <p><h4>This crawler will start on a URL and find all hyperlinks on the site, then
+                        will map them for a visual representation.  Pretty neat, huh?</h4></p>
+
+                            <p><h3>So what is a web crawler, anyway?</h3></p>
+
+                            <p>To better explain, let's talk about it in relation to Google.  Google is an enormous search engine,
+                            yet when you perform a search, the results appear instantly.  How is that possible?  Basically, this
+                            happens because web crawlers are constantly helping Google store and update content.</p>
+
+                            <p>As the name implies, a web crawler literally loads a web page and then crawls or reads through the page, much like you
+                            or I would do when we examine a page for whatever information we're looking for.  While we may read over a page and
+                            forget what we saw five minutes later, Google really can't afford to do that; otherwise, it would take forever for a
+                            Google search to return any results!  Google's web crawlers instead 'scrape' web pages for content, and then store it
+                            for near-instant retrieval.</p>
+
+                            <p>This is how most search engines work.  By the time you enter a search into Google, the results have already been scraped
+                            and stored (probably long before you ever decided to search for whatever you're searching for), and all Google has to do is
+                            retrieve any matching data and return it to you as search results.  As you can imagine, web-based companies have a vested interest in
+							in making their sites web crawler friendly, which is known as Search Engine Optimization, or SEO.</p>
+
+                            <p>Group Pi's web crawler project is intended to demonstrate basic web crawler functionality. Our project will crawl a site and return
+								a graphic representation of all links it finds--in essence, scraping for content, just like production web crawlers do.  We
+								have built our graphic web crawler by integrating several frameworks (some preexisting, some custom made for this project)
+								into what you see below.</p>
+
+							<footer>
+								<a href="#tryit" class="button scrolly">Try it!</a>
+							</footer>
+						</div>
+					</section>
+
+				<!-- Try It -->
+					<section id="tryit" class="two">
+						<div class="container">
+
+							<header>
+								<h3>All we need to get started is a URL, but feel free to specify a search type and a stop keyword.</h3>
+							</header>
+                            <p>There are several ways to use our web crawler.  At the minimum, it requires a URL.  Beyond that,
+                            you can also specify the type of search you want, define a keyword that, if found, will stop
+                            the crawler, and finally, can choose to limit how many links the crawler will cover before stopping.
+                                Your results will display graphically in the Results section below.</p>
+
+                            <p>So, for example, choosing these inputs {http://www.google.com, Breadth-First, science, 50} would instruct the crawler to crawl
+								Google's main URL doing a breadth-first search, would stop if the word 'science' was found, and would graph the first 50
+                                links found before stopping.
+                                </p>
+
+                            <!--Citation: http://stackoverflow.com/questions/6997400/css-for-aligning-textbox-and-label,
+                                http://stackoverflow.com/questions/17139883/how-to-line-up-text-and-textboxes-horizontally-->
+							<!--<form method="GET" action="https://fast-beyond-66023.herokuapp.com/crawl?" enctype="multipart/form-data"> -->
+                            <form>
+                                <div class="fields">
+                                <label>Choose a Web Page to Start From: </label>
+                                    <!--<span><input type="url" id="url" onblur="validateURL()"> -->
+                                    <span><input type="url" id="url"></span>
+								<label> What kind of search? </label>
+                                    <span><input type="radio" name="searchType" id="searchType" value="DFS" checked="checked">Depth-First
+                                    <input type="radio" name="searchType" id="searchType" value="BFS">Breadth-First
+                                    </span>
+                                </div>
+
+								<div class="fields">
+								<label>Keyword to Stop On (optional): </label>
+                                    <span><input type="text" id="keyword"></span>
+                                </div>
+
+								<div class="fields">
+									<label>Limit the search to (optional): </label>
+									<span><input type="text" id="limit" placeholder="100"></span>
+								</div>
+                            </form><br>
+
+                                <div>
+								<a href="#results" class="button scrolly" type="button" onclick=startCrawl()>Begin Crawling!</a>
+                                </div>
+                            </div>
+                        </section>
+
+                <!-- Results -->
+
+                <!-- Code for status indicator -->
+                <style>
+                    .progress {
+                        height: 100px;
+                    }
+                    .progress > svg {
+                        margin: 0 auto;
+                        height: 100%;
+                        display: block;
+                    }
+                </style>
+
+
+
+                <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
+
+                <script>
+                //window.onload = function onLoad() {
+                function showStatus() {
+                var circle = new ProgressBar.Circle('#progress', {
+                color: '#FCB03C',
+                duration: 2800,
+                easing: 'easeInOut',
+                });
+                circle.animate(2);
+                };
+                </script>
+
+				<section id="results" class="three">
+				<div class="container">
+
+					<header>
+						<h2>Results:</h2>
+						<h4>Click the graph to zoom in or out.</h4>
+					</header>
+					<!-- Show status bar -->
+					<div class="progress" id="progress"></div>
+					<canvas id="testCanvas" width="1200" height="800"></canvas>
+				</div>
+				</section>
+
+				<!-- Further Reading -->
+				<section id="sources" class="four">
+					<div class="container">
+						<header>
+							<h4>Further Reading:</h4>
+						</header>
+						<ul>
+							<li><a href="https://www.google.com/insidesearch/howsearchworks/crawling-indexing.html">Google's Documentation on Web Crawlers</a></li>
+							<li><a href="https://varvy.com/googlebot.html">A Brief Introduction to Googlebot</a></li>
+							<li><a href="http://static.googleusercontent.com/media/www.google.com/en//webmasters/docs/search-engine-optimization-starter-guide.pdf">Google's Starter Guide to Search Engine Optimization (SEO)</a></li>
+							<li><a href="http://searchengineland.com/guide/what-is-seo">Periodic Table of SEO Success Factors</a></li>
+							<li><a href="https://moz.com/beginners-guide-to-seo">A Beginner's Guide to SEO</a></li>
+						</ul>
+					</div>
+				</section>
+
+		<!-- Footer -->
+			<div id="footer">
+
+				<!-- Revision date -->
+					<ul class="revision">
+						<li>Latest Revision: 6.05.16</li>
+					</ul>
+			</div>
+
+<!------------------------------- Form Validation ------------------------------->
+                <!--URL Validation
+                Citation: http://stackoverflow.com/questions/1303872/trying-to-validate-url-using-javascript
+                !-->
+                            <script>
+                                function validateURL() {
+                                    var urlregex = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+                                    urlTested = document.getElementById('url').value;
+                                    console.log(urlTested);
+                                    //console.log(urlregex.test(urlTested));
+                                    if (urlregex.test(urlTested))
+                                        return true;
+                                    else
+                                        return false;
+                                }
+                            </script>
+
+
+                            <!-- Citation: http://stackoverflow.com/questions/28597167/how-do-it-have-a-radio-button-pass-data-hidden-from-url -->
+                            <script type="text/javascript">
+                                function startCrawl() {
+                                    if (validateURL()) {
+                                        var radios = document.getElementsByName('searchType');
+
+                                        for (var i = 0, length = radios.length; i < length; i++) {
+                                            if (radios[i].checked) {
+                                                $selectedRadio = radios[i].value;
+                                                break;
+                                            }
+                                        }
+
+                                        needStatus = true;
+                                        if (needStatus == true) {
+                                            showStatus();
+                                        }
+
+                                        appendData = document.getElementById('url').value + '&type=' + $selectedRadio + '&keyword=' + document.getElementById('keyword').value + '&limit=' + document.getElementById('limit').value;
+
+                                        <!--AJAX -->
+                                        $.ajax({
+											url: "/crawl?url=" + appendData,
+                                            type: "GET",
+                                            dataType: "json",
+                                            success: (function (data) {
+                                                results = '[' + (JSON.stringify(data)) + ']';
+                                                console.log(results);
+                                                drawResults(results);
+                                            })
+                                        });
+                                    }
+
+                                        <!--Previous implementation, passing request by URL Encoding-->
+										//window.location.href="https://fast-beyond-66023.herokuapp.com/crawl?url=" + document.getElementById('url').value + '&type='
+                                        //	+ $selectedRadio + '&keyword=' + document.getElementById('keyword').value;
+
+                                    else {
+                                        alert("Invalid URL. The format should be: http://www.google.com");
+                                    }
+                                }
+                            </script>
+
+				<!------------------------------- EaselJS Functionality ------------------------------->
+				<script>
+					//function init() {
+					function drawResults(results) {
+						var links = JSON.parse(results);
+
+						// Create a stage from the canvas tag below
+						var stage = new createjs.Stage("testCanvas");
+						stage.enableMouseOver(5)
+						stage.on("stagemousedown", function(event) {
+							// Citation: http://stackoverflow.com/questions/87359/can-i-pass-a-javascript-variable-to-another-browser-window/87737#87737
+							var w = window.open("zoom.html", '_blank', 'scrollbars=yes,status=no, width=1800,height=450');
+							w.results = results;
+						});
+
+						//Call draw tree function
+						if(links[0].children.length > 0){
+							// Create a label with the first  url
+							label = new createjs.Text(links[0].url, "8px Arial", "#ff7700");
+							stage.addChild(label);
+							// Set the x and y coordinates of the label
+							label.x = 600;
+							label.y = 40;
+							label.textAlign = "center";
+							stage.update();
+							drawTree(0, 1200, 50, 0, links, stage);
+						}
+
+					}
+					function drawTree(lBoundary, rBoundary, y, idx, newLinks, stage) {
+						var width = rBoundary - lBoundary;
+						//alert("width: " + width);
+						//alert("newLinks.length = " + newLinks.length);
+						var startX = (rBoundary + lBoundary)/2;
+						var startY = y;
+						var numLinks = newLinks[idx].children.length;
+						var linkDivide = (width/(numLinks + 1));
+						var line;
+						var j;
+						var x;
+						var label;
+						//alert("URL: " + newLinks[idx].url);
+						x = lBoundary + linkDivide;
+						//alert("linkDivide: " + linkDivide)
+						//alert("numLinks = " + numLinks);
+						for (j = 0; j < numLinks; j++) {
+							// Get new 'shape' which comes with a 'graphics' property that allows us to draw
+							line = new createjs.Shape();
+							// Add this line shape to the canvas
+							stage.addChild(line);
+							// Set brush stroke style (line thickness) and draw black line
+							line.graphics.setStrokeStyle(1).beginStroke("rgba(0,0,0,1)");
+							// Tell EaselJS where to go to start drawing the line
+							line.graphics.moveTo(startX, startY);
+							y = startY + 50;
+							// Tell EaselJS where to draw the line to
+							//alert("x = " + x + ", y = " + y);
+							line.graphics.lineTo(x, y-10);
+							// Stop drawing this line
+							line.graphics.endStroke();
+
+							// Create a circle to represent node of the link
+							circle = new createjs.Shape();//createjs.Text(newLinks[idx].children[j].url, "8px Arial", "#ff7700");
+							circle.graphics.beginFill("#ff7700").drawCircle(0, 0, 10);
+							// Set the x and y coordinates of the label
+							circle.x = x;
+							circle.y = y-10
+							function setAlertVal () {
+								var alertVal = newLinks[idx].children[j].url
+								//Display the url on mousover;
+								circle.on("mouseover", function() {
+									swal({   
+										title: alertVal, 
+										//type: "info",   
+										showConfirmButton: false,
+										allowOutsideClick: true,
+										animation: false,
+										timer:1500});
+								});
+							}
+							setAlertVal ()
+							stage.addChild(circle);
+							stage.update();
+							//alert("grandchild links: " + newLinks[idx].children[j].children.length);
+							if(newLinks[idx].children[j].children.length > 0){
+								//alert("Left Boundary = " + j*linkDivide + " right Boundary = " + ((j+2)*linkDivide));
+								drawTree((x-(.5*linkDivide)), (x+(.5*linkDivide)), y, j, newLinks[idx].children, stage);
+							}
+							x += linkDivide;
+							line.graphics.moveTo(startX, startY);
+						}
+						needStatus == false;
+						stage.update();
+					}
+				</script>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollzer.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+            <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+            <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+			<script src="assets/js/sweetalert.min.js"></script> 
+			<link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+			
+	</div>
+    </body>
+</html>
